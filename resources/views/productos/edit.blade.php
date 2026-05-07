@@ -1,0 +1,55 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Editar Producto - LIMATEC') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                
+                <h3 class="text-lg font-medium mb-6 text-gray-700 border-b pb-2">Información del Producto</h3>
+                
+                <form action="{{ route('productos.update', $producto->id) }}" method="POST" class="space-y-6">
+                    @csrf
+                    @method('PUT') 
+
+                    <!-- Nombre -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Nombre del Producto:</label>
+                        <input type="text" name="nombre" value="{{ $producto->nombre }}" 
+                            class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3" required>
+                    </div>
+
+                    <!-- Precio y Stock (En una fila en PC, uno arriba de otro en móvil) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Precio (S/):</label>
+                            <input type="number" step="0.01" name="precio" value="{{ $producto->precio }}" 
+                                class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Stock Actual:</label>
+                            <input type="number" name="stock" value="{{ $producto->stock }}" 
+                                class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3" required>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button type="submit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-md transition">
+                            Actualizar Producto
+                        </button>
+                        
+                        <a href="{{ route('productos.index') }}" class="w-full sm:w-auto text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-8 rounded-md transition">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>
