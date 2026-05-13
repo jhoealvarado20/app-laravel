@@ -18,11 +18,11 @@
                     </x-nav-link>
                     {{-- productos --}}
                     <x-nav-link :href="route('productos.index')" :active="request()->routeIs('productos')">
-                        {{ __('productos') }}
+                        {{ __('Productos') }}
                     </x-nav-link>
                     {{-- categorias --}}
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
-                        {{ __('categories') }}
+                        {{ __('Categorias') }}
                     </x-nav-link>
                 </div>
             </div>
