@@ -35,13 +35,13 @@ Route::middleware(['auth', 'es_admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-Route::get('/init-db', function () {
+/* Route::get('/init-db', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:force');
         return "Tablas creadas con éxito: " . \Illuminate\Support\Facades\Artisan::output();
     } catch (\Exception $e) {
         return "Error: " . $e->getMessage();
     }
-});
+}); */
 
 require __DIR__ . '/auth.php';
