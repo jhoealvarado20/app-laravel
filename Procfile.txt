@@ -1,1 +1,1 @@
-web: php artisan route:clear && heroku-php-apache2 public/
+web: heroku-php-nginx public/
