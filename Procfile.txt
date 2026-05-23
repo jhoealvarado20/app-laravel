@@ -1,1 +1,1 @@
-web: php artisan optimize && php artisan migrate --force && heroku-php-apache2 public/
+web: php artisan route:clear && heroku-php-apache2 public/
