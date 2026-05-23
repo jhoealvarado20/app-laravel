@@ -13,6 +13,21 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @php
+    // Verificar si el manifest existe
+    $manifestPath = public_path('build/manifest.json');
+    $viteAvailable = file_exists($manifestPath);
+@endphp
+
+@if($viteAvailable)
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@else
+    {{-- Fallback: solo CSS básico --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css">
+    {{-- O si tienes assets compilados localmente --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+@endif
+
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
