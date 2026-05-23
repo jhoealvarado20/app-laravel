@@ -46,7 +46,7 @@ Route::middleware(['auth', 'es_admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-Route::get('/migrar-base-de-datos', function () {
+/* Route::get('/migrar-base-de-datos', function () {
     try {
         // Esto ejecuta el comando php artisan migrate --force internamente
         Artisan::call('migrate', ['--force' => true]);
@@ -54,7 +54,7 @@ Route::get('/migrar-base-de-datos', function () {
     } catch (\Exception $e) {
         return "Error al migrar: " . $e->getMessage();
     }
-});
+}); */
 /* Route::get('/init-db', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:force');
