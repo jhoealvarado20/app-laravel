@@ -5,6 +5,17 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrar-base-de-datos', function () {
+    try {
+        // Esto ejecuta el comando php artisan migrate --force internamente
+        Artisan::call('migrate', ['--force' => true]);
+        return "¡Base de datos migrada con éxito en Railway!";
+    } catch (\Exception $e) {
+        return "Error al migrar: " . $e->getMessage();
+    }
+});
 
 // 1. Ruta pública
 Route::get('/', function () {
@@ -35,6 +46,15 @@ Route::middleware(['auth', 'es_admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
+Route::get('/migrar-base-de-datos', function () {
+    try {
+        // Esto ejecuta el comando php artisan migrate --force internamente
+        Artisan::call('migrate', ['--force' => true]);
+        return "¡Base de datos migrada con éxito en Railway!";
+    } catch (\Exception $e) {
+        return "Error al migrar: " . $e->getMessage();
+    }
+});
 /* Route::get('/init-db', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:force');
